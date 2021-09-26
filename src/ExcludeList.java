@@ -17,8 +17,14 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.PriorityQueue;
 import java.util.Scanner;
 import java.awt.event.ActionEvent;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
+import java.awt.Font;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class ExcludeList extends JFrame {
 
@@ -27,7 +33,7 @@ public class ExcludeList extends JFrame {
 	private DefaultTableModel model;
 	private int selectedRow;
 	private Confirmation conf;
-
+	private PriorityQueue<String> pq;
 	/**
 	 * Launch the application.
 	 */
@@ -48,10 +54,11 @@ public class ExcludeList extends JFrame {
 	 * Create the frame.
 	 */
 	public ExcludeList() {
+		pq=new PriorityQueue<String>();
 		conf = new Confirmation();
 		selectedRow = -1;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 330);
+		setBounds(100, 100, 462, 378);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -64,12 +71,25 @@ public class ExcludeList extends JFrame {
 		model = new DefaultTableModel();
 		model.addColumn("excluded tricks");
 		excludeTable = new JTable(model);
+		excludeTable.setAutoCreateRowSorter(true);
 		scrollPane.setViewportView(excludeTable);
 
+		JLabel errorMsg = new JLabel("select a trick first!");
+		errorMsg.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		errorMsg.setHorizontalAlignment(SwingConstants.CENTER);
+		errorMsg.setBounds(6, 306, 117, 25);
+		errorMsg.setVisible(false);
+		contentPane.add(errorMsg);
+		
+		
 		JButton removeTrickBtn = new JButton("remove trick");
 		removeTrickBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				selectedRow = excludeTable.getSelectedRow();
+				if(selectedRow==-1) {
+					errorMsg.setVisible(true);
+					return;
+				}
 				String rowVal=(String) excludeTable.getValueAt(selectedRow, 0);
 				model.removeRow(selectedRow);// dont forget to display error if user removes trick w/o selecting row
 												// first
@@ -85,6 +105,13 @@ public class ExcludeList extends JFrame {
 		removeTrickBtn.setBounds(6, 267, 117, 29);
 		contentPane.add(removeTrickBtn);
 
+		excludeTable.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				errorMsg.setVisible(false);
+			}
+		});
+		
 		JButton clearAllBtn = new JButton("clear all");
 		clearAllBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -122,6 +149,8 @@ public class ExcludeList extends JFrame {
 		});
 		closeExcludeList.setBounds(327, 267, 117, 29);
 		contentPane.add(closeExcludeList);
+		
+
 
 		try {
 			Scanner sc = new Scanner(new File("excluded.txt"));
@@ -136,27 +165,27 @@ public class ExcludeList extends JFrame {
 	}
 
 	public void sort(String input) {
-		if (model.getRowCount() == 0) {
+//		if (model.getRowCount() == 0) {
 			model.insertRow(0, new String[] { input });
-			return;
-		}
-		int current = 0;
-		while ((current < model.getRowCount() && input.compareTo((String) model.getValueAt(current, 0)) > 0))// outofboundsexception
-																												// when
-																												// adding
-																												// to
-																												// very
-																												// last
-																												// row
-		{
-			current++;
-		}
-		System.out.println(current);
-		if (current == model.getRowCount()) {
-			model.addRow(new String[] { input });
-			return;
-		}
-		model.insertRow(current, new String[] { input });
+//			return;
+//		}
+//		int current = 0;
+//		while ((current < model.getRowCount() && input.compareTo((String) model.getValueAt(current, 0)) > 0))// outofboundsexception
+//																												// when
+//																												// adding
+//																												// to
+//																												// very
+//																												// last
+//																												// row
+//		{
+//			current++;
+//		}
+//		System.out.println(current);
+//		if (current == model.getRowCount()) {
+//			model.addRow(new String[] { input });
+//			return;
+//		}
+//		model.insertRow(current, new String[] { input });
 	}
 	public void removeLine(String toRemove) throws IOException
 	{					

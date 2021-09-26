@@ -1,9 +1,12 @@
 import java.awt.BorderLayout;
+import java.util.Scanner;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+
 import net.miginfocom.swing.MigLayout;
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -13,7 +16,10 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.awt.event.ActionEvent;
+import javax.swing.JTextField;
 
 public class TrickList extends JFrame {
 
@@ -39,6 +45,7 @@ public class TrickList extends JFrame {
 	 * Create the frame.
 	 */
 	public TrickList() {
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 448, 683);
 		contentPane = new JPanel();
@@ -130,9 +137,8 @@ public class TrickList extends JFrame {
 		flatPanel.setLayout(null);
 		
 		JTextPane txtpnFlat = new JTextPane();
-		txtpnFlat.setText("beanplant\nboneless\nheelflip\nkickflip\nno comply\nollie\nshuv");
 		txtpnFlat.setEditable(false);
-		txtpnFlat.setBounds(6, 6, 372, 264);
+		txtpnFlat.setBounds(10, 10, 380, 275);
 		flatPanel.add(txtpnFlat);
 		
 		JPanel ledgePanel = new JPanel();
@@ -144,7 +150,6 @@ public class TrickList extends JFrame {
 		ledgePanel.add(scrollPane);
 		
 		JTextPane txtpnLedge = new JTextPane();
-		txtpnLedge.setText("5-0\n5050\nboard slide\ncrooked grind\nhurricane\nnosegrind\nnoseslide\novercrook\noverwilly\nslappy\nslappy 5-0\nslappy crooked grind\nslappy feeble\nslappy noseslide\nslappy smith\nsmith\ntailslide\nwilly\nfeeble");
 		txtpnLedge.setEditable(false);
 		scrollPane.setViewportView(txtpnLedge);
 		
@@ -158,9 +163,49 @@ public class TrickList extends JFrame {
 		
 		JTextPane textPnTranny = new JTextPane();
 		textPnTranny.setEditable(false);
-		textPnTranny.setText("5-0\n5050\n900\nair\nair walk\nbeanplant\nbenihana\nboard slide rock n roll\nboard slide rock to fakie\nboneless\ncan opener\nchrist air\ncrooked grind\ndisaster\nfastplant\nfeeble\nhoho plant\nindy grab\nmctwist\nmelon grab\nnose grab\nnosegrind\nnosepick\nnoseslide/stall\nrock n roll\nrock to fakie\nslob plant\nsmith\ntail grab\ntailslide/stall\ntexas plant\nwilly");
 		scrollPane_1.setViewportView(textPnTranny);
 		
+		String total="";
+		try {
+			Scanner sc=new Scanner(new File("tricksFlat.txt"));
+			while(sc.hasNextLine())
+			{
+					total=total+sc.nextLine()+"\n";
+			}
+			txtpnFlat.setText(total);
+			sc.close();
+		} catch (FileNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		String totalLedge="";
+		try {
+			Scanner scLedge=new Scanner(new File("tricksLedge.txt"));
+			while(scLedge.hasNextLine())
+			{
+					totalLedge=totalLedge+scLedge.nextLine()+"\n";
+			}
+			txtpnLedge.setText(totalLedge);
+			scLedge.close();
+		} catch (FileNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+				
+		String totalTran="";
+		try {
+			Scanner scTran=new Scanner(new File("tricksTranny.txt"));
+			while(scTran.hasNextLine())
+			{
+					totalTran=totalTran+scTran.nextLine()+"\n";
+			}
+			textPnTranny.setText(totalTran);
+			scTran.close();
+		} catch (FileNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		JButton closeWindow = new JButton("close window");
 		closeWindow.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

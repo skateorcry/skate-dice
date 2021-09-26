@@ -28,6 +28,7 @@ import javax.swing.JProgressBar;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
 import javax.swing.SpinnerNumberModel;
+import javax.swing.JScrollPane;
 
 public class Skatedice extends JFrame {
 
@@ -56,14 +57,15 @@ public class Skatedice extends JFrame {
 	private History hist;
 	/**
 	 * Create the frame.
+	 * @throws IOException 
 	 */
-	public Skatedice() {
+	public Skatedice() throws IOException {
 		difficultyValue="";
 		obstacleValue="";
 		hist=new History();
 		berricsOn=false;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 682, 377);
+		setBounds(100, 100, 766, 451);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -71,15 +73,8 @@ public class Skatedice extends JFrame {
 
 		JLabel skateDiceLabel = new JLabel("Skate Dice");
 		skateDiceLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		skateDiceLabel.setBounds(287, 0, 107, 39);
+		skateDiceLabel.setBounds(322, 0, 107, 39);
 		contentPane.add(skateDiceLabel);
-
-		JTextArea trickOutput = new JTextArea();
-		trickOutput.setWrapStyleWord(true);
-		trickOutput.setEditable(false);
-		trickOutput.setLineWrap(true);
-		trickOutput.setBounds(141, 37, 506, 49);
-		contentPane.add(trickOutput);
 		
 		SpinnerNumberModel sm = new SpinnerNumberModel(1, 1, 100, 1);
 		JSpinner numTricks = new JSpinner(sm);
@@ -89,10 +84,10 @@ public class Skatedice extends JFrame {
 				numTricksValue = (int) (numTricks.getValue());
 			}
 		});
-		numTricks.setBounds(258, 98, 34, 26);
+		numTricks.setBounds(299, 95, 34, 26);
 		contentPane.add(numTricks);
 
-		String[] difficulty = { "difficulty", "easy", "medium", "hard" };
+		String[] difficulty = { "select difficulty", "easy", "medium", "hard" };
 		JComboBox difficultyCombo = new JComboBox(difficulty);
 		difficultyCombo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -102,7 +97,7 @@ public class Skatedice extends JFrame {
 			}
 		});
 		difficultyCombo.setToolTipText("");
-		difficultyCombo.setBounds(6, 99, 107, 27);
+		difficultyCombo.setBounds(32, 96, 121, 27);
 		contentPane.add(difficultyCombo);
 
 		JComboBox obstacleCombo = new JComboBox();
@@ -113,9 +108,8 @@ public class Skatedice extends JFrame {
 					obstacleValue="";
 			}
 		});
-		obstacleCombo.setModel(
-				new DefaultComboBoxModel(new String[] {"obstacle", "flat", "ledge/curb/rail", "transition"}));
-		obstacleCombo.setBounds(125, 99, 121, 27);
+		obstacleCombo.setModel(new DefaultComboBoxModel(new String[] {"select obstacle", "flat", "ledge/curb/rail", "transition"}));
+		obstacleCombo.setBounds(166, 96, 121, 27);
 		contentPane.add(obstacleCombo);
 
 		JButton excludeBtn = new JButton("exclude");
@@ -125,7 +119,7 @@ public class Skatedice extends JFrame {
 				excl.setVisible(true);
 			}
 		});
-		excludeBtn.setBounds(304, 98, 117, 29);
+		excludeBtn.setBounds(345, 95, 117, 29);
 		contentPane.add(excludeBtn);
 
 		JButton viewTricksBtn = new JButton("view tricks");
@@ -135,12 +129,12 @@ public class Skatedice extends JFrame {
 				tricks.setVisible(true);
 			}
 		});
-		viewTricksBtn.setBounds(433, 98, 117, 29);
+		viewTricksBtn.setBounds(474, 95, 117, 29);
 		contentPane.add(viewTricksBtn);
 
 		JLabel gameofskate = new JLabel("S.K.A.T.E.");
 		gameofskate.setHorizontalAlignment(SwingConstants.CENTER);
-		gameofskate.setBounds(224, 127, 217, 86);
+		gameofskate.setBounds(267, 127, 217, 86);
 		gameofskate.setFont(gameofskate.getFont().deriveFont(40.0f));
 		contentPane.add(gameofskate);
 
@@ -149,12 +143,51 @@ public class Skatedice extends JFrame {
 		player1.setBounds(16, 204, 107, 39);
 		contentPane.add(player1);
 
+		
 		JTextArea letters = new JTextArea();
 		letters.setEditable(false);
 		letters.setBounds(129, 215, 152, 28);
 		contentPane.add(letters);
 		
-		SkateLetters letter=new SkateLetters();
+		SkateLetters letter;
+
+		
+
+		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		tabbedPane.setBounds(0, 0, 21, 21);
+		contentPane.add(tabbedPane);
+		
+		JTextArea letters_1 = new JTextArea();
+		letters_1.setEditable(false);
+		letters_1.setBounds(127, 266, 152, 28);
+		contentPane.add(letters_1);
+		
+		SkateLetters letter_1;
+
+		String current="";
+		String current2="";
+		try {//loads saved game
+			Scanner sc=new Scanner(new File("letters.txt"));//initialize skateLetters objects in here
+			 current=sc.nextLine();
+			if(current.equals("0")) {//player 1
+				current="";
+			}
+			current2=sc.nextLine();
+			if(current2.equals("0"))//player 2
+			{
+				current2 = "";
+			}
+
+		} catch (FileNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		letters.setText(current);
+		letter=new SkateLetters(current.length(),current);
+		
+		letters_1.setText(current2);
+		letter_1=new SkateLetters(current2.length(),current2);
+		
 		JButton addLetter = new JButton("+letter");
 		addLetter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -176,17 +209,6 @@ public class Skatedice extends JFrame {
 		subtractLetter.setBounds(365, 210, 78, 29);
 		contentPane.add(subtractLetter);
 		
-
-		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-		tabbedPane.setBounds(0, 0, 21, 21);
-		contentPane.add(tabbedPane);
-		
-		JTextArea letters_1 = new JTextArea();
-		letters_1.setEditable(false);
-		letters_1.setBounds(127, 266, 152, 28);
-		contentPane.add(letters_1);
-		
-		SkateLetters letter_1=new SkateLetters();
 		JButton subtractLetter_1 = new JButton("-letter");
 		subtractLetter_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -245,15 +267,6 @@ public class Skatedice extends JFrame {
 		enableBerrics.setHorizontalAlignment(SwingConstants.CENTER);
 		enableBerrics.setBounds(453, 204, 192, 49);
 		contentPane.add(enableBerrics);
-
-		
-		JButton addPlayer = new JButton("+player");
-		addPlayer.setBounds(0, 312, 72, 29);
-		contentPane.add(addPlayer);
-		
-		JButton subtractPlayer = new JButton("-player");
-		subtractPlayer.setBounds(74, 312, 72, 29);
-		contentPane.add(subtractPlayer);
 		
 		JButton historyBtn = new JButton("history");
 		historyBtn.addActionListener(new ActionListener() {
@@ -261,15 +274,15 @@ public class Skatedice extends JFrame {
 				hist.setVisible(true);
 			}
 		});
-		historyBtn.setBounds(562, 98, 117, 29);
+		historyBtn.setBounds(603, 95, 117, 29);
 		contentPane.add(historyBtn);
 		
 		JButton wildCardBtn = new JButton("Wild Card");
-		wildCardBtn.setBounds(6, 48, 91, 29);
+		wildCardBtn.setBounds(22, 50, 91, 29);
 		contentPane.add(wildCardBtn);
 
 		JButton rollBtn = new JButton("Roll");//dont forget exclude functionality!
-		rollBtn.setBounds(91, 48, 51, 29);
+		rollBtn.setBounds(121, 50, 91, 29);
 		contentPane.add(rollBtn);
 		
 		JButton saveSkate = new JButton("save game");
@@ -280,7 +293,15 @@ public class Skatedice extends JFrame {
 					BufferedWriter writer=new BufferedWriter(fwHistory);
 					String player1=letter.getLetters();
 					String player2=letter_1.getLetters();
-					writer.write(player1+"\n"+player2);
+					if(player1.equals(""))
+						writer.write("0"+"\n");
+					else
+						writer.write(player1+"\n");
+					if(player2.equals(""))
+						writer.write("0"+"\n");
+					else
+						writer.write(player2+"\n");					
+//					writer.write(player1+"\n"+player2+"\n");
 					writer.close();
 					fwHistory.close();
 				} catch (IOException e1) {
@@ -288,8 +309,18 @@ public class Skatedice extends JFrame {
 				}
 			}
 		});
-		saveSkate.setBounds(141, 312, 117, 29);
+		saveSkate.setBounds(16, 314, 117, 29);
 		contentPane.add(saveSkate);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(236, 36, 506, 49);
+		contentPane.add(scrollPane);
+		
+				JTextArea trickOutput = new JTextArea();
+				scrollPane.setViewportView(trickOutput);
+				trickOutput.setWrapStyleWord(true);
+				trickOutput.setEditable(false);
+				trickOutput.setLineWrap(true);
 
 		wildCardBtn.addActionListener(new ActionListener() {//wild and roll button only add a row to table, loading from txt file to table goes somewhere else
 			public void actionPerformed(ActionEvent e) {
@@ -317,6 +348,9 @@ public class Skatedice extends JFrame {
 		
 		rollBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if(difficultyValue.equals("")||obstacleValue.equals("")) {					
+					return;
+				}
 				Roll rollTrick=new Roll();
 				String finalTrick = "";
 				String trick = "";
@@ -366,15 +400,6 @@ public class Skatedice extends JFrame {
 			}
 		});
 
-//		try {//loads saved game
-//			Scanner sc=new Scanner(new File("letters.txt"));
-//			String current=sc.nextLine();
-//			letters.setText(current);
-//			current=sc.nextLine();//breaks when nothing in file, find a way to do nothing if nothing in file
-//			letters_1.setText(current);
-//		} catch (FileNotFoundException e1) {
-//			// TODO Auto-generated catch block
-//			e1.printStackTrace();
-//		}
+
 	}
 }

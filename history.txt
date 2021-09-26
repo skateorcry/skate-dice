@@ -1,58 +1,55 @@
-  
-  
-  
- flat fakie  beanplant
- flat switch backside kickflip
- flat regular frontside boneless
- flat fakie  kickflip
- flat   no comply
- flat fakie backside boneless
- flat switch backside kickflip
-w/cancel flip
-w/flamingo
-w/pressure flip
-w/late flip
-  
-  
-  
-  
-  
-easy flat no comply
-easy flat heelflip
-easy flat 
-easy flat beanplant
-easy flat heelflip
-  
-  
-w/impossible
-w/impossible
-w/street plant
-w/no comply tre flip
-   frontside shuv
-  regular backside ollie
-  fakie backside heelflip
-  fakie frontside kickflip
-  nollie frontside shuv
   fakie frontside shuv
-  nollie frontside kickflip
-    
-   backside shuv
-  nollie backside heelflip
-  regular  kickflip
-  nollie backside shuv
-  regular frontside ollie
-  nollie backside ollie
-  switch frontside kickflip
-  switch frontside heelflip
-  regular  ollie
-  switch  shuv
-  regular frontside 
-  regular backside shuv
+w/casper flip
+w/late shuv
+w/late flip
+w/street plant
+    heelflip
+w/pressure flip
+  nollie  heelflip
   switch  heelflip
-  switch frontside heelflip
-    ollie
-  regular  heelflip
-  regular  
-  regular backside heelflip
-  fakie backside kickflip
-  nollie backside ollie
+  fakie frontside heelflip
+medium flat fakie  ollie
+medium flat switch  beanplant
+medium flat regular frontside no comply
+medium flat regular backside boneless
+medium flat fakie backside ollie
+medium flat   boneless
+medium flat nollie frontside boneless
+medium flat nollie  heelflip
+medium flat  frontside kickflip
+medium flat regular frontside ollie
+medium flat regular frontside kickflip
+medium flat nollie frontside 
+medium flat fakie  boneless
+medium flat nollie frontside beanplant
+  
+  
+  
+  
+  
+  
+ flat nollie  ollie
+  
+  
+  
+  
+  
+  
+  
+  
+  
+ flat regular frontside heelflip,  backside boneless,   no comply, nollie  boneless, switch backside shuv, regular backside heelflip, nollie  boneless, regular frontside boneless, switch backside kickflip, regular  boneless, regular  shuv, fakie  ollie, regular frontside kickflip, nollie backside shuv, regular frontside no comply, fakie  beanplant, regular backside beanplant, switch backside kickflip,   , fakie backside ,  frontside boneless,  frontside beanplant, switch backside ,  frontside ollie, fakie  heelflip, switch frontside ollie, regular frontside no comply, fakie frontside ollie, switch frontside kickflip, regular frontside kickflip, nollie  shuv, fakie backside beanplant,   no comply, nollie frontside , switch frontside heelflip, nollie  , switch backside beanplant,   beanplant,  frontside no comply,   shuv, fakie backside no comply, fakie frontside heelflip,  backside ollie, switch  boneless,   no comply, fakie frontside no comply, nollie backside ollie,  backside ,  backside shuv, regular frontside kickflip, fakie backside kickflip, nollie backside no comply, switch  , regular frontside kickflip, fakie  beanplant, switch  boneless, regular  kickflip, switch frontside heelflip,  frontside shuv, switch  boneless, regular  no comply, switch backside heelflip, nollie backside boneless, fakie  kickflip,  backside heelflip, fakie frontside no comply,  backside boneless, nollie backside , nollie backside no comply
+hard  , 
+w/late shuv, pressure flip
+w/late flip, late flip, impossible, late shuv, no comply tre flip, late shuv, casper flip, late shuv, primo slide, no comply tre flip, pressure flip, pressure flip, no comply impossible, primo slide, cancel flip, primo slide, strawberry milkshake, no comply tre flip, flamingo, hospital flip, pressure flip, flamingo, no comply impossible, hospital flip, street plant, hospital flip, casper flip, late flip, street plant, casper flip, no comply tre flip, no comply tre flip, casper flip, street plant, late flip, impossible, street plant, street plant, strawberry milkshake, street plant, late flip, no comply impossible, casper flip, cancel flip, pressure flip, no comply impossible, no comply impossible, casper flip, late flip, flamingo, strawberry milkshake, no comply tre flip, no comply impossible, hospital flip, no comply tre flip, strawberry milkshake, hospital flip, no comply tre flip, no comply tre flip, no comply tre flip, no comply tre flip, street plant, late shuv, late shuv, cancel flip, hospital flip, strawberry milkshake, hospital flip, strawberry milkshake
+w/casper flip, strawberry milkshake, impossible, no comply tre flip, pressure flip, street plant, flamingo, primo slide, impossible, street plant, primo slide, no comply tre flip, primo slide, strawberry milkshake, hospital flip, pressure flip, no comply impossible, street plant, cancel flip, no comply impossible, no comply impossible, cancel flip, no comply tre flip, flamingo, no comply impossible, hospital flip, primo slide, impossible, late flip, pressure flip, impossible, primo slide, cancel flip, strawberry milkshake, late flip, late shuv, pressure flip, impossible, late flip, no comply impossible, flamingo, primo slide, pressure flip, impossible, late flip, primo slide, casper flip, cancel flip, late shuv, flamingo, flamingo, flamingo, primo slide, cancel flip, pressure flip, street plant, late shuv, late flip, impossible, cancel flip, cancel flip, casper flip, flamingo, hospital flip, flamingo, late flip, pressure flip, no comply impossible, casper flip
+hard  , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , 
+easy ledge/curb/rail , slappy, slappy, , 5050, , 5050
+easy ledge/curb/rail 5050, slappy, 5050, board slide, 5050, , board slide
+easy ledge/curb/rail board slide, 5050, board slide, slappy, slappy, 5050, 5050
+easy ledge/curb/rail 5050, , slappy, 5050, 5050, , board slide
+easy ledge/curb/rail board slide
+medium transition backside noseslide/stall
+medium transition frontside disaster
+medium transition  noseslide/stall
+medium ledge/curb/rail  5-0

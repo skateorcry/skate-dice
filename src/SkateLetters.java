@@ -8,6 +8,11 @@ public class SkateLetters
 		numLetter=0;
 		letters="";
 	}
+	public SkateLetters(int number, String curLetters)
+	{
+		numLetter=number;
+		letters=curLetters;
+	}
 	public void addLetter()
 	{
 		numLetter++;

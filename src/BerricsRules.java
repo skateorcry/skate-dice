@@ -10,7 +10,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class BerricsRules extends JFrame {
-//hi
+
 	private JPanel contentPane;
 
 	/**

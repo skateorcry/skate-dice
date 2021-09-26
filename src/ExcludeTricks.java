@@ -14,6 +14,10 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class ExcludeTricks extends JFrame {
 
@@ -49,9 +53,21 @@ public class ExcludeTricks extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		excludeTricksField = new JTextField();
+		JButton btnNewButton = new JButton("invisible");
+		btnNewButton.setEnabled(true);
+		btnNewButton.setBounds(493, 6, 1, 1);
+		contentPane.add(btnNewButton);
+		btnNewButton.setVisible(true);
+		
+		excludeTricksField = new HintTxtField("enter tricks exactly as shown in trick list (eg. regular frontside 180 kickflip)");
+		contentPane.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				JPanel clicked=(JPanel)e.getSource();
+				clicked.requestFocusInWindow();
+			}
+		});
 		excludeTricksField.setFont(new Font("Lucida Grande", Font.PLAIN, 11));
-		excludeTricksField.setText("enter tricks exactly as shown in trick list (eg. regular frontside 180 kickflip)");
 		excludeTricksField.setBounds(6, 35, 438, 38);
 		contentPane.add(excludeTricksField);
 		excludeTricksField.setColumns(10);
@@ -67,6 +83,8 @@ public class ExcludeTricks extends JFrame {
 		contentPane.add(seeExcl);
 		
 		JButton enterBtn = new JButton("enter");
+
+		
 		enterBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				exclTrick=excludeTricksField.getText();
@@ -101,5 +119,7 @@ public class ExcludeTricks extends JFrame {
 		});
 		closeExcludeTricks.setBounds(327, 85, 117, 29);
 		contentPane.add(closeExcludeTricks);
+		
+
 	}
 }
