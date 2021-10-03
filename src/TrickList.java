@@ -184,7 +184,10 @@ public class TrickList extends JFrame {
 			Scanner scLedge=new Scanner(new File("tricksLedge.txt"));
 			while(scLedge.hasNextLine())
 			{
-					totalLedge=totalLedge+scLedge.nextLine()+"\n";
+				String next=scLedge.nextLine();
+				if((next.equals("/m")))
+					next=scLedge.nextLine();
+				totalLedge=totalLedge+next+"\n";
 			}
 			txtpnLedge.setText(totalLedge);
 			scLedge.close();
@@ -198,7 +201,10 @@ public class TrickList extends JFrame {
 			Scanner scTran=new Scanner(new File("tricksTranny.txt"));
 			while(scTran.hasNextLine())
 			{
-					totalTran=totalTran+scTran.nextLine()+"\n";
+				String next=scTran.nextLine();
+				if((next.equals("/m"))||(next.equals("/h")))
+					next=scTran.nextLine();
+				totalTran=totalTran+next+"\n";
 			}
 			textPnTranny.setText(totalTran);
 			scTran.close();

@@ -32,8 +32,6 @@ public class ExcludeList extends JFrame {
 	private JTable excludeTable;
 	private DefaultTableModel model;
 	private int selectedRow;
-	private Confirmation conf;
-	private PriorityQueue<String> pq;
 	/**
 	 * Launch the application.
 	 */
@@ -54,8 +52,6 @@ public class ExcludeList extends JFrame {
 	 * Create the frame.
 	 */
 	public ExcludeList() {
-		pq=new PriorityQueue<String>();
-		conf = new Confirmation();
 		selectedRow = -1;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 462, 378);

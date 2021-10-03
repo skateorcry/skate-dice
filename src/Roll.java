@@ -1,17 +1,23 @@
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+
 public class Roll {
 	private String[] stance;
 	private String[] direction;
 	private String[] rotation;
 	
-	private String[] trickFlat;
+	private ArrayList<String> trickFlat;
 	
-	private String[] trickLedgeEasy;
-	private String[] trickLedge;
+	private ArrayList<String> trickLedgeEasy;
+	private ArrayList<String> trickLedge;
 	
-	private String[] trickTrannyEasy;
-	private String[] trickTrannyMed;
-	private String[] trickTrannyHard;
+	private ArrayList<String> trickTrannyEasy;
+	private ArrayList<String> trickTrannyMed;
+	private ArrayList<String> trickTrannyHard;
 	
 	public Roll()
 	{
@@ -19,14 +25,79 @@ public class Roll {
 		direction=new String[] {"frontside","backside",""};
 		rotation=new String[] {"180","360","bigspin","sex change","shuv",""};
 		
-		trickFlat=new String[] {"beanplant","boneless","heelflip","kickflip","no comply","ollie","shuv",""};//med only stance, direction
+		trickFlat=new ArrayList<String>();//med only stance, direction
 		
-		trickLedgeEasy=new String[] {"","5050","slappy","board slide"};//easy tricks dont contain stance, direction, or rotation(same for tranny)
-		trickLedge=new String[] {"","5-0","5050","board slide","crooked grind","feeble","willy","tailslide","smith","slappy smith","slappy noseslide","slappy feeble","slappy crooked grind","slappy 5-0","slappy","overwilly","overcrook","noseslide","nosegrind","hurricane","lipslide"};//medium contains only stance and direction
+		trickLedgeEasy=new ArrayList<String>();//easy tricks dont contain stance, direction, or rotation(same for tranny)
+		trickLedge=new ArrayList<String>();//medium contains only stance and direction
 		
-		trickTrannyEasy=new String[] {"","5050","feeble","rock n roll","rock to fakie"};
-		trickTrannyMed=new String[] {"","5050","5-0","beanplant","board slide rock n roll","board slide rock to fakie","boneless","can opener","crooked grind","disaster","fastplant","feeble","indy grab","melon grab","nose grab","nosegrind","nosepick","noseslide/stall","rock n roll","rock to fakie","slob plant","smith","tail grab","tailslide/stall","texas plant","willy","sweeper"};//contains direction
-		trickTrannyHard=new String[] {"","5050","5-0","900","air","air walk","beanplant","benihana","board slide rock n roll","board slide rock to fakie","boneless","can opener","christ air","crooked grind","disaster","fastplant","feeble","hoho plant","indy grab","mctwist","melon grab","nose grab","nosegrind","nosepick","noseslide/stall","rock n roll","rock to fakie","slob plant","smith","tail grab","tailslide/stall","texas plant","willy","sweeper"};
+		trickTrannyEasy=new ArrayList<String>();
+		trickTrannyMed=new ArrayList<String>();//contains direction
+		trickTrannyHard=new ArrayList<String>();
+		
+		fillArray(trickFlat, "tricksFlat.txt", "", 2);
+		fillArray(trickLedgeEasy, "tricksLedge.txt", "/m", 0);
+		fillArray(trickLedge, "tricksLedge.txt", "", 2);
+		fillArray(trickTrannyEasy, "tricksTranny.txt", "/m", 0);
+		fillArray(trickTrannyMed, "tricksTranny.txt", "/h", 1);
+		fillArray(trickTrannyHard, "tricksTranny.txt", "", 2);
+	}//use the txt file to initialize arrays
+	//rearrange txt file to match difficulty
+	
+	
+	private void fillArray(ArrayList<String> s, String file, String ind, int difficulty)//0=easy 1=medium 2=hard
+	{
+		s.add("");
+		if(difficulty==0)
+		{
+			try {
+				Scanner sc=new Scanner(new File(file));
+				while(sc.hasNextLine())
+				{
+					String next=sc.nextLine();
+					if(next.equals(ind)) 
+						return;				
+					s.add(next);//infinite loop
+				}
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}			
+		}
+		if(difficulty==1) 
+		{
+			try {
+				Scanner sc=new Scanner(new File(file));
+				while(sc.hasNextLine())
+				{
+					String next=sc.nextLine();
+					if(next.equals("/m"))
+						next=sc.nextLine();
+					if(next.equals(ind)) 
+						return;				
+					s.add(next);
+				}
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}	
+		}
+		if(difficulty==2) 
+		{
+			try {
+				Scanner sc=new Scanner(new File(file));
+				while(sc.hasNextLine())
+				{
+					String next=sc.nextLine();
+					if(next.equals("/m")||next.equals("/h"))
+						next=sc.nextLine();	
+					s.add(next);
+				}
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}	
+		}
+
 	}
 	
 	public String getTrick(String difficulty,String obstacle,boolean berrics)
@@ -42,21 +113,21 @@ public class Roll {
 	}
 	public String getTrickEasy(String obstacle,boolean berrics)
 	{
-		int trickIndFlat=(int) (Math.random() * trickFlat.length);
-		int trickIndLedge=(int) (Math.random() * trickLedgeEasy.length);
-		int trickIndTranny=(int) (Math.random() * trickTrannyEasy.length);
+		int trickIndFlat=(int) (Math.random() * trickFlat.size());
+		int trickIndLedge=(int) (Math.random() * trickLedgeEasy.size());
+		int trickIndTranny=(int) (Math.random() * trickTrannyEasy.size());
 		if(berrics==true)
 		{
-			while(trickFlat[trickIndFlat]=="beanplant"||trickFlat[trickIndFlat]=="boneless"||trickFlat[trickIndFlat]=="no comply")
-				trickIndFlat=(int) (Math.random() * trickFlat.length);
-			return trickFlat[trickIndFlat];
+			while(trickFlat.get(trickIndFlat).equals("beanplant")||trickFlat.get(trickIndFlat).equals("boneless")||trickFlat.get(trickIndFlat).equals("no comply"))
+				trickIndFlat=(int) (Math.random() * trickFlat.size());
+			return trickFlat.get(trickIndFlat);
 		}
 		if(obstacle=="flat")
-			return trickFlat[trickIndFlat];
+			return trickFlat.get(trickIndFlat);
 		else if(obstacle=="ledge/curb/rail")
-			return trickLedgeEasy[trickIndLedge];
+			return trickLedgeEasy.get(trickIndLedge);
 		else if(obstacle=="transition")
-			return trickTrannyEasy[trickIndTranny];
+			return trickTrannyEasy.get(trickIndTranny);
 		return "";
 	}
 	
@@ -64,21 +135,21 @@ public class Roll {
 	{
 		int indStc=(int) (Math.random() * stance.length);
 		int indDir=(int) (Math.random() * direction.length);
-		int trickIndFlat=(int) (Math.random() * trickFlat.length);
-		int trickIndLedge=(int) (Math.random() * trickLedge.length);
-		int trickIndTranny=(int) (Math.random() * trickTrannyMed.length);
+		int trickIndFlat=(int) (Math.random() * trickFlat.size());
+		int trickIndLedge=(int) (Math.random() * trickLedge.size());
+		int trickIndTranny=(int) (Math.random() * trickTrannyMed.size());
 		if(berrics==true)
 		{
-			while(trickFlat[trickIndFlat]=="beanplant"||trickFlat[trickIndFlat]=="boneless"||trickFlat[trickIndFlat]=="no comply")
-				trickIndFlat=(int) (Math.random() * trickFlat.length);
-			return stance[indStc]+" "+direction[indDir]+" "+trickFlat[trickIndFlat];
+			while(trickFlat.get(trickIndFlat).equals("beanplant")||trickFlat.get(trickIndFlat).equals("boneless")||trickFlat.get(trickIndFlat).equals("no comply"))
+				trickIndFlat=(int) (Math.random() * trickFlat.size());
+			return stance[indStc]+" "+direction[indDir]+" "+trickFlat.get(trickIndFlat);
 		}
 		if(obstacle=="flat")
-			return stance[indStc]+" "+direction[indDir]+" "+trickFlat[trickIndFlat];
+			return stance[indStc]+" "+direction[indDir]+" "+trickFlat.get(trickIndFlat);
 		else if(obstacle=="ledge/curb/rail")
-			return direction[indDir]+" "+trickLedge[trickIndLedge];
+			return direction[indDir]+" "+trickLedge.get(trickIndLedge);
 		else if(obstacle=="transition")
-			return direction[indDir]+" "+trickTrannyMed[trickIndTranny];
+			return direction[indDir]+" "+trickTrannyMed.get(trickIndTranny);
 		return "";
 	}
 	
@@ -87,21 +158,21 @@ public class Roll {
 		int indStc=(int) (Math.random() * stance.length);
 		int indDir=(int) (Math.random() * direction.length);
 		int indRot=(int) (Math.random() * rotation.length);
-		int trickIndFlat=(int) (Math.random() * trickFlat.length);
-		int trickIndLedge=(int) (Math.random() * trickLedge.length);
-		int trickIndTranny=(int) (Math.random() * trickTrannyHard.length);
+		int trickIndFlat=(int) (Math.random() * trickFlat.size());
+		int trickIndLedge=(int) (Math.random() * trickLedge.size());
+		int trickIndTranny=(int) (Math.random() * trickTrannyHard.size());
 		if(berrics==true)
 		{
-			while(trickFlat[trickIndFlat]=="beanplant"||trickFlat[trickIndFlat]=="boneless"||trickFlat[trickIndFlat]=="no comply")
-				trickIndFlat=(int) (Math.random() * trickFlat.length);
-			return stance[indStc]+" "+direction[indDir]+" "+rotation[indRot]+" "+trickFlat[trickIndFlat];
+			while(trickFlat.get(trickIndFlat).equals("beanplant")||trickFlat.get(trickIndFlat).equals("boneless")||trickFlat.get(trickIndFlat).equals("no comply"))
+				trickIndFlat=(int) (Math.random() * trickFlat.size());
+			return stance[indStc]+" "+direction[indDir]+" "+rotation[indRot]+" "+trickFlat.get(trickIndFlat);
 		}
 		if(obstacle=="flat")
-			return stance[indStc]+" "+direction[indDir]+" "+rotation[indRot]+" "+trickFlat[trickIndFlat];
+			return stance[indStc]+" "+direction[indDir]+" "+rotation[indRot]+" "+trickFlat.get(trickIndFlat);
 		else if(obstacle=="ledge/curb/rail")
-			return stance[indStc]+" "+direction[indDir]+" "+rotation[indRot]+" "+trickLedge[trickIndLedge];
+			return stance[indStc]+" "+direction[indDir]+" "+rotation[indRot]+" "+trickLedge.get(trickIndLedge);
 		else if(obstacle=="transition")
-			return stance[indStc]+" "+direction[indDir]+" "+rotation[indRot]+" "+trickTrannyHard[trickIndTranny];
+			return stance[indStc]+" "+direction[indDir]+" "+rotation[indRot]+" "+trickTrannyHard.get(trickIndTranny);
 		return "";
 	}
 }

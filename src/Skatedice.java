@@ -256,11 +256,9 @@ public class Skatedice extends JFrame {
 				if(berricsOn==true)
 				{
 					berricsOn=false;
-					System.out.println(false);
 				}
 				else {
 					berricsOn=true;
-					System.out.println(true);
 				}
 			}
 		});
@@ -380,7 +378,12 @@ public class Skatedice extends JFrame {
 					{
 						System.out.println("Error: "+e1.getMessage());
 					}
-					finalTrick = finalTrick + trick + ", ";
+					if(trick.equals(""))
+					{
+						
+					}
+					else
+						finalTrick = finalTrick + trick + ", ";
 				}
 				finalTrick = finalTrick.substring(0, finalTrick.length() - 2);
 				trickOutput.setText(finalTrick);
