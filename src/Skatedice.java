@@ -92,8 +92,9 @@ public class Skatedice extends JFrame {
 		difficultyCombo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				difficultyValue=(String)difficultyCombo.getSelectedItem();
-				if(difficultyValue.equals("difficulty"))
+				if(difficultyValue.equals("select difficulty")) 
 					difficultyValue="";
+				
 			}
 		});
 		difficultyCombo.setToolTipText("");
@@ -104,8 +105,9 @@ public class Skatedice extends JFrame {
 		obstacleCombo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				obstacleValue=(String)(obstacleCombo.getSelectedItem());
-				if(obstacleValue.equals("obstacle"))
+				if(obstacleValue.equals("select obstacle")) 
 					obstacleValue="";
+				
 			}
 		});
 		obstacleCombo.setModel(new DefaultComboBoxModel(new String[] {"select obstacle", "flat", "ledge/curb/rail", "transition"}));
@@ -279,7 +281,7 @@ public class Skatedice extends JFrame {
 		wildCardBtn.setBounds(22, 50, 91, 29);
 		contentPane.add(wildCardBtn);
 
-		JButton rollBtn = new JButton("Roll");//dont forget exclude functionality!
+		JButton rollBtn = new JButton("Roll");
 		rollBtn.setBounds(121, 50, 91, 29);
 		contentPane.add(rollBtn);
 		
@@ -298,8 +300,7 @@ public class Skatedice extends JFrame {
 					if(player2.equals(""))
 						writer.write("0"+"\n");
 					else
-						writer.write(player2+"\n");					
-//					writer.write(player1+"\n"+player2+"\n");
+						writer.write(player2+"\n");			
 					writer.close();
 					fwHistory.close();
 				} catch (IOException e1) {
@@ -385,11 +386,10 @@ public class Skatedice extends JFrame {
 					else
 						finalTrick = finalTrick + trick + ", ";
 				}
-				finalTrick = finalTrick.substring(0, finalTrick.length() - 2);
+				if(finalTrick.length()>2)
+					finalTrick = finalTrick.substring(0, finalTrick.length() - 2);
 				trickOutput.setText(finalTrick);
 				hist.newHistory(0, difficultyValue, obstacleValue, finalTrick);
-//				if(finalTrick=="")//does not save blank rolls to history; does not work
-//					return;
 				try {
 					FileWriter fwHistory=new FileWriter("history.txt", true);
 					BufferedWriter writer=new BufferedWriter(fwHistory);

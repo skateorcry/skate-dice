@@ -15,6 +15,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 import java.awt.event.ActionEvent;
+import javax.swing.ScrollPaneConstants;
 
 public class History extends JFrame {
 
@@ -42,7 +43,7 @@ public class History extends JFrame {
 	 */
 	public History() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 329);
+		setBounds(100, 100, 463, 360);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -65,7 +66,7 @@ public class History extends JFrame {
 				setVisible(false);
 			}
 		});
-		closeHistory.setBounds(327, 266, 117, 29);
+		closeHistory.setBounds(327, 276, 117, 29);
 		contentPane.add(closeHistory);
 		
 		JButton clearHistory = new JButton("clear history");
@@ -86,7 +87,7 @@ public class History extends JFrame {
 				}
 						}
 		});
-		clearHistory.setBounds(6, 266, 117, 29);
+		clearHistory.setBounds(6, 276, 117, 29);
 		contentPane.add(clearHistory);
 		
 		try {

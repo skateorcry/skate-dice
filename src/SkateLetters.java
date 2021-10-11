@@ -3,11 +3,6 @@ public class SkateLetters
 {
 	int numLetter;
 	String letters;
-	public SkateLetters()
-	{
-		numLetter=0;
-		letters="";
-	}
 	public SkateLetters(int number, String curLetters)
 	{
 		numLetter=number;

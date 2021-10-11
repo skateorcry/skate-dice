@@ -47,7 +47,7 @@ public class TrickList extends JFrame {
 	public TrickList() {
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 448, 683);
+		setBounds(100, 100, 448, 715);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -129,7 +129,7 @@ public class TrickList extends JFrame {
 		contentPane.add(lblTrick);
 		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-		tabbedPane.setBounds(21, 310, 405, 322);
+		tabbedPane.setBounds(21, 308, 405, 322);
 		contentPane.add(tabbedPane);
 		
 		JPanel flatPanel = new JPanel();
@@ -218,7 +218,7 @@ public class TrickList extends JFrame {
 				setVisible(false);
 			}
 		});
-		closeWindow.setBounds(309, 620, 117, 29);
+		closeWindow.setBounds(307, 640, 117, 29);
 		contentPane.add(closeWindow);
 	}
 }

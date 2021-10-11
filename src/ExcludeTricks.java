@@ -47,7 +47,7 @@ public class ExcludeTricks extends JFrame {
 	public ExcludeTricks() {
 		exclList=new ExcludeList();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 148);
+		setBounds(100, 100, 470, 172);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -59,7 +59,7 @@ public class ExcludeTricks extends JFrame {
 		contentPane.add(btnNewButton);
 		btnNewButton.setVisible(true);
 		
-		excludeTricksField = new HintTxtField("enter tricks exactly as shown in trick list (eg. regular frontside 180 kickflip)");
+		excludeTricksField = new HintTxtField("enter trick to exclude");
 		contentPane.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -90,7 +90,7 @@ public class ExcludeTricks extends JFrame {
 				exclTrick=excludeTricksField.getText();
 				if(exclTrick.equals(""))
 					return;
-				exclList.sort(exclTrick);
+				exclList.insert(exclTrick);
 				try {
 					FileWriter fwExcl=new FileWriter("excluded.txt",true);
 					BufferedWriter writer=new BufferedWriter(fwExcl);

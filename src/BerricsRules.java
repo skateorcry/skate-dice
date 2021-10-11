@@ -35,7 +35,7 @@ public class BerricsRules extends JFrame {
 	
 	public BerricsRules() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 463);
+		setBounds(100, 100, 465, 477);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -56,7 +56,7 @@ public class BerricsRules extends JFrame {
 				setVisible(false);
 			}
 		});
-		closeRules.setBounds(327, 400, 117, 29);
+		closeRules.setBounds(327, 405, 117, 29);
 		contentPane.add(closeRules);
 		
 	}

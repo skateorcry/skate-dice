@@ -40,8 +40,7 @@ public class Roll {
 		fillArray(trickTrannyEasy, "tricksTranny.txt", "/m", 0);
 		fillArray(trickTrannyMed, "tricksTranny.txt", "/h", 1);
 		fillArray(trickTrannyHard, "tricksTranny.txt", "", 2);
-	}//use the txt file to initialize arrays
-	//rearrange txt file to match difficulty
+	}
 	
 	
 	private void fillArray(ArrayList<String> s, String file, String ind, int difficulty)//0=easy 1=medium 2=hard

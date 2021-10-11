@@ -87,15 +87,13 @@ public class ExcludeList extends JFrame {
 					return;
 				}
 				String rowVal=(String) excludeTable.getValueAt(selectedRow, 0);
-				model.removeRow(selectedRow);// dont forget to display error if user removes trick w/o selecting row
-												// first
+				model.removeRow(selectedRow);
 				try {
 					removeLine(rowVal);
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				// remove from file too
 			}
 		});
 		removeTrickBtn.setBounds(6, 267, 117, 29);
@@ -111,15 +109,6 @@ public class ExcludeList extends JFrame {
 		JButton clearAllBtn = new JButton("clear all");
 		clearAllBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-//				conf.setVisible(true);
-//				if (conf.getConfirmation() == true) {
-//					try {
-//						FileWriter exclude = new FileWriter("excluded.txt");
-//						model.setRowCount(0);
-//					} catch (IOException e1) {
-//						System.out.println("Error: " + e1.getMessage());
-//					}
-//				}
 				int option=JOptionPane.showConfirmDialog(null,"clear all?","confirm clear",JOptionPane.YES_NO_OPTION);
 				if(option==JOptionPane.YES_OPTION)
 				{
@@ -151,7 +140,7 @@ public class ExcludeList extends JFrame {
 		try {
 			Scanner sc = new Scanner(new File("excluded.txt"));
 			while (sc.hasNextLine()) {
-				sort(sc.nextLine());
+				insert(sc.nextLine());
 			}
 			sc.close();
 		} catch (IOException e) {
@@ -160,29 +149,10 @@ public class ExcludeList extends JFrame {
 
 	}
 
-	public void sort(String input) {
-//		if (model.getRowCount() == 0) {
+	public void insert(String input) {
 			model.insertRow(0, new String[] { input });
-//			return;
-//		}
-//		int current = 0;
-//		while ((current < model.getRowCount() && input.compareTo((String) model.getValueAt(current, 0)) > 0))// outofboundsexception
-//																												// when
-//																												// adding
-//																												// to
-//																												// very
-//																												// last
-//																												// row
-//		{
-//			current++;
-//		}
-//		System.out.println(current);
-//		if (current == model.getRowCount()) {
-//			model.addRow(new String[] { input });
-//			return;
-//		}
-//		model.insertRow(current, new String[] { input });
 	}
+	
 	public void removeLine(String toRemove) throws IOException
 	{					
 		File current=new File("excluded.txt");
@@ -193,11 +163,13 @@ public class ExcludeList extends JFrame {
 		while(sc.hasNextLine())
 		{
 			String curLine=sc.nextLine();
-			if(!curLine.equals(toRemove))
+			if(!(curLine.equals(toRemove))) 
 				bw.write(curLine+"\n");
+			
 		}
 		sc.close();
 		bw.close();
+		current.delete();
 		temp.renameTo(current);
 	}
 }
