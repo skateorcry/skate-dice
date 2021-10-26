@@ -1,12 +1,9 @@
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import net.miginfocom.swing.MigLayout;
 import javax.swing.JTabbedPane;
-import java.awt.Label;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
@@ -22,15 +19,13 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 import java.awt.event.ActionEvent;
-import javax.swing.JSplitPane;
 import javax.swing.JCheckBox;
-import javax.swing.JProgressBar;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.JScrollPane;
 
-public class Skatedice extends JFrame {
+public class MainMenu extends JFrame {
 
 	private JPanel contentPane;
 
@@ -41,7 +36,7 @@ public class Skatedice extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Skatedice frame = new Skatedice();
+					MainMenu frame = new MainMenu();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -59,7 +54,7 @@ public class Skatedice extends JFrame {
 	 * Create the frame.
 	 * @throws IOException 
 	 */
-	public Skatedice() throws IOException {
+	public MainMenu() throws IOException {
 		difficultyValue="";
 		obstacleValue="";
 		hist=new History();
@@ -356,7 +351,7 @@ public class Skatedice extends JFrame {
 				for (int i = 0; i < numTricksValue; i++) {
 					trick = rollTrick.getTrick(difficultyValue,obstacleValue,berricsOn);
 					boolean hasExcl=true;//so it can enter the loop
-					try//this is a really stupid way to check for excluded
+					try
 					{
 						while(hasExcl==true)//as long as trick contains excluded
 						{
